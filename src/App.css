@@ -1,0 +1,8 @@
+a, a:hover, a:active {
+    color: inherit;
+    text-decoration: inherit;
+}
+h1{
+    font-weight: 400;
+    font-size: 1.5rem;
+}
