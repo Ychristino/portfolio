@@ -1,6 +1,10 @@
-a, a:hover, a:active {
-    color: inherit;
+a, a:active {
+    color: #6c757d;
     text-decoration: inherit;
+    margin-right: 0.3rem;
+}
+a:hover{
+    color: #adb5bd;
 }
 h1{
     font-weight: 400;

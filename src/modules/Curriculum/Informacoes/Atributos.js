@@ -1,5 +1,7 @@
 // React Imports
 import React from 'react';
+import { useState, useEffect } from 'react';
+
 
 // Modules Imports
 
@@ -7,12 +9,8 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Atributos(){
-    const DATA = [
-        'Atributo 1',
-        'Atributo 2',
-    ]
-
+function Atributos(props){
+    
     return(
         <>
             <Row
@@ -21,7 +19,7 @@ function Atributos(){
                 lg={2}
             >
                 
-                {DATA.map((atributo, key)=>
+                {props.atributos.map((atributo, key)=>
                     <Col md={12} lg={6}>
                         {atributo.toUpperCase()}
                         <hr/>

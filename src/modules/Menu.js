@@ -44,23 +44,17 @@ function Menu(){
                         </Nav>
                         
                         <Nav>
-                            <Nav.Link href='google' title='Github'>
                                 <a href='https://github.com/Ychristino' target='_blank'>
-                                    <GitHub /> /ychristino
+                                    <GitHub />/ychristino
                                 </a>
-                            </Nav.Link>
 
-                            <Nav.Link href='linkedin' title='Linkedin'>
                                 <a href='https://www.linkedin.com/in/yan-christino-6b370820a/' target='_blank'>
-                                    <LinkedIn /> LinkedIn
+                                    <LinkedIn />LinkedIn
                                 </a>
-                            </Nav.Link>
-                            
-                            <Nav.Link href='WhatsApp' title='WhatsApp'>
+
                                 <a href='https://wa.me/5551982672790' target='_blank'>
-                                    <WhatsApp /> WhatsApp
+                                    <WhatsApp />WhatsApp
                                 </a>
-                            </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

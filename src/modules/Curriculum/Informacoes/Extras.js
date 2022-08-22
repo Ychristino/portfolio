@@ -1,14 +1,17 @@
 // React Imports
 import React from 'react';
+import { useState, useEffect } from 'react';
+
 
 // Modules Imports
 
 // Bootstrap Imports
 
-function Extras(){
+function Extras(props){
+
     return(
         <>
-            Descrição das atividades extras...
+            {props.atividadesExtras}
         </>
     )
 }

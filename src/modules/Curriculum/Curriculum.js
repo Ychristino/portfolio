@@ -1,6 +1,6 @@
 // React Imports
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Modules Imports
 import Formacoes from './Informacoes/Formacoes';
@@ -13,38 +13,53 @@ import Extras from './Informacoes/Extras';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from 'react-bootstrap/Button';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Spinner from 'react-bootstrap/Spinner';
 
 function Curriculum(){
+    const [data, setData] = useState({});
+    const [isLoading, setisLoading] = useState(true);
+    const [card, setCard] = useState({});
 
-    const DATA = [
+    const abas = [
         {
             titulo:'Atividades Atuais',
-            corpo:<Atividades />,
+            corpo:<Atividades atividadesAtuais={data.atividadesAtuais}/>,
         },
         {
             titulo:'Formações',
-            corpo:<Formacoes />,
+            corpo:<Formacoes formacoes={data.formacoes}/>,
         },
         {
             titulo:'Experiências',
-            corpo:<Experiencias />,
+            corpo:<Experiencias experiencias={data.experiencias} />,
         },
         {
             titulo:'Skills',
-            corpo: <Atributos />,
+            corpo: <Atributos atributos={data.atributos} />,
         },
         {
             titulo:'Atividades Extras',
-            corpo:<Extras />,
+            corpo:<Extras atividadesExtras={data.atividadesExtras} />,
         },
     ];
+    
+    useEffect(()=> {
+        fetch('http://localhost:8080/curriculo/PT_BR')
+            .then((response)=> response.json())
+            .then((data)=> {
+                setData(data);
+                setCard(abas[0])
+                setisLoading(false);
+            })
+            .catch((err)=> console.error(`Alguma coisa deu errado... ${err}`));
+    }, []);
 
-    const [card, setCard] = useState(DATA[0]);
+    console.log(card)
 
-    return(
+    if(isLoading) return <Spinner animation="border" />
+    else return(
         <>
             <Card className='mb-2'>
                 <Card.Header>
@@ -52,7 +67,7 @@ function Curriculum(){
                         fill 
                         variant="tabs" 
                         defaultActiveKey="0"
-                        onSelect={(elementoSelecionado)=> setCard(DATA[elementoSelecionado])}    
+                        onSelect={(elementoSelecionado)=> setCard(abas[elementoSelecionado])}    
                     >
                         
                         <Nav.Item>
@@ -84,7 +99,7 @@ function Curriculum(){
                     </Card.Title>
 
                     <Card.Text>
-                        <p>{card.corpo}</p>
+                        {card.corpo}
                     </Card.Text>
                 </Card.Body>
 
