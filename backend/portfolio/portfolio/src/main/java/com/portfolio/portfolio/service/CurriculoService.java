@@ -28,7 +28,8 @@ public class CurriculoService {
                             c.getFormacoes(),
                             c.getExperiencias(),
                             c.getAtributos(),
-                            c.getAtividadesExtras()
+                            c.getAtividadesExtras(),
+                            c.getLingua()
                     )
             );
         }

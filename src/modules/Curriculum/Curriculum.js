@@ -17,46 +17,43 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Spinner from 'react-bootstrap/Spinner';
 
+import axios from 'axios';
+
 function Curriculum(){
     const [data, setData] = useState({});
     const [isLoading, setisLoading] = useState(true);
     const [card, setCard] = useState({});
-
-    const abas = [
-        {
-            titulo:'Atividades Atuais',
-            corpo:<Atividades atividadesAtuais={data.atividadesAtuais}/>,
-        },
-        {
-            titulo:'Formações',
-            corpo:<Formacoes formacoes={data.formacoes}/>,
-        },
-        {
-            titulo:'Experiências',
-            corpo:<Experiencias experiencias={data.experiencias} />,
-        },
-        {
-            titulo:'Skills',
-            corpo: <Atributos atributos={data.atributos} />,
-        },
-        {
-            titulo:'Atividades Extras',
-            corpo:<Extras atividadesExtras={data.atividadesExtras} />,
-        },
-    ];
+    //VERIFICAR, ARRUMAR PARA BUSCAR DA API OU MELHORAR A CONSTRUÇÃO 
+    const [abas, setAbas] = useState([{}]);
     
     useEffect(()=> {
-        fetch('http://localhost:8080/curriculo/PT_BR')
-            .then((response)=> response.json())
-            .then((data)=> {
-                setData(data);
+        axios.get("http://localhost:8080/curriculo/PT_BR")
+            .then(resposta => {
+                setData(resposta.data);
+                setAbas([{
+                    titulo:'Atividades Atuais',
+                    corpo:<Atividades atividadesAtuais={resposta.data.atividadesAtuais} />,
+                },
+                {
+                    titulo:'Formações',
+                    corpo:<Formacoes formacoes={resposta.data.formacoes} />,
+                },
+                {
+                    titulo:'Experiências',
+                    corpo:<Experiencias experiencias={resposta.data.experiencias} />,
+                },
+                {
+                    titulo:'Skills',
+                    corpo: <Atributos atributos={resposta.data.atributos} />,
+                },
+                {
+                    titulo:'Atividades Extras',
+                    corpo:<Extras atividadesExtras={resposta.data.atividadesExtras} />,
+                }])
                 setCard(abas[0])
                 setisLoading(false);
             })
-            .catch((err)=> console.error(`Alguma coisa deu errado... ${err}`));
-    }, []);
-
-    console.log(card)
+    }, [isLoading]);
 
     if(isLoading) return <Spinner animation="border" />
     else return(
@@ -66,33 +63,19 @@ function Curriculum(){
                     <Nav
                         fill 
                         variant="tabs" 
-                        defaultActiveKey="0"
+                        defaultActiveKey={0}
                         onSelect={(elementoSelecionado)=> setCard(abas[elementoSelecionado])}    
                     >
-                        
-                        <Nav.Item>
-                            <Nav.Link eventKey="0">Atividades Atuais</Nav.Link>
-                        </Nav.Item>
-                        
-                        <Nav.Item>
-                            <Nav.Link eventKey="1">Formações</Nav.Link>
-                        </Nav.Item>
-
-                        <Nav.Item>
-                            <Nav.Link eventKey="2">Experiências</Nav.Link>
-                        </Nav.Item>
-
-                        <Nav.Item>
-                            <Nav.Link eventKey="3">Atributos/Skills</Nav.Link>
-                        </Nav.Item>
-
-                        <Nav.Item>
-                            <Nav.Link eventKey="4">Atividades extras</Nav.Link>
-                        </Nav.Item>
-
+                        {abas?.map((aba, key)=> 
+                                <Nav.Item key={key}>
+                                    <Nav.Link eventKey={key}>
+                                        {aba.titulo}
+                                    </Nav.Link>
+                                </Nav.Item>                            
+                        )}
                     </Nav>
                 </Card.Header>
-                
+
                 <Card.Body>
                     <Card.Title>
                         <h1>{card.titulo}</h1>

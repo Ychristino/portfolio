@@ -13,7 +13,8 @@ public class CurriculoViewMapper implements Mapper<Curriculo, CurriculoView> {
                 curriculo.getFormacoes(),
                 curriculo.getExperiencias(),
                 curriculo.getAtributos(),
-                curriculo.getAtividadesExtras()
+                curriculo.getAtividadesExtras(),
+                curriculo.getLingua()
         );
     }
 }

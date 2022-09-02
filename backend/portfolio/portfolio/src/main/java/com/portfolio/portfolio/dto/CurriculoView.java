@@ -15,13 +15,15 @@ public class CurriculoView {
     public List<Experiencia>    experiencias;
     public List<Atributo>       atributos;
     public String               atividadesExtras;
+    public Lingua               lingua;
 
-    public CurriculoView(int id, String atividadesAtuais, List<Formacao> formacoes, List<Experiencia> experiencias, List<Atributo> atributos, String atividadesExtras){
+    public CurriculoView(int id, String atividadesAtuais, List<Formacao> formacoes, List<Experiencia> experiencias, List<Atributo> atributos, String atividadesExtras, Lingua lingua){
         this.id                 = id;
         this.atividadesAtuais   = atividadesAtuais;
         this.formacoes          = formacoes;
         this.experiencias       = experiencias;
         this.atributos          = atributos;
         this.atividadesExtras   = atividadesExtras;
+        this.lingua             = lingua;
     }
 }

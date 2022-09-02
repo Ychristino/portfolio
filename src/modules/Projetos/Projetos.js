@@ -1,5 +1,6 @@
 // React Imports
 import React from 'react';
+import { useState, useEffect } from 'react';
 
 // Modules Imports
 
@@ -8,19 +9,34 @@ import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import { Row } from 'react-bootstrap';
 
+import axios from 'axios';
+
 function Projetos(){
 
     const DATA = [
         {
             nome:'Projeto 01',
-            descricao:'Descrição do projeto 01'
+            descricao:'Descrição do projeto 01',
+            url:'https://google.com'
         },
         {
             nome:'Projeto 02',
-            descricao:'Descrição do projeto 02'
+            descricao:'Descrição do projeto 02',
+            url:'https://google.com'
         }
     ];
+    const [data, setData] = useState({});
+    const [isLoading, setisLoading] = useState(false);
+    const [projetos, setProjetos] = useState({});
     
+    useEffect(()=> {
+        axios.get("http://localhost:8080/curriculo/PT_BR")
+            .then(resposta => {
+                setData(resposta.data);
+
+                setisLoading(false);
+            })
+    }, [isLoading]);
 
     return(
         <>
@@ -44,6 +60,7 @@ function Projetos(){
                                 <Button
                                     className='mb-2'  
                                     variant="outline-secondary"
+                                    href={projeto.url}
                                 >
                                     Conhecer
                                 </Button>

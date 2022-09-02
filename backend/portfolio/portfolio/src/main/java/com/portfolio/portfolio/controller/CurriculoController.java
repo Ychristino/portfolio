@@ -30,9 +30,9 @@ public class CurriculoController {
 
     @PostMapping
     public ResponseEntity<CurriculoView> cadastrar(@RequestBody NovoCurriculoForm form, UriComponentsBuilder uriBuilder){
-        CurriculoView clienteView = service.cadastrar(form);
-        URI uri = uriBuilder.path("/cliente/" + clienteView.id).build().toUri();
-        return ResponseEntity.created(uri).body(clienteView);
+        CurriculoView curriculoView = service.cadastrar(form);
+        URI uri = uriBuilder.path("/curriculo/").build().toUri();
+        return ResponseEntity.created(uri).body(curriculoView);
     }
 
     @PutMapping

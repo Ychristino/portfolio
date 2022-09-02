@@ -7,6 +7,8 @@ import { useState, useEffect } from 'react';
 // Bootstrap Imports
 
 function Atividades(props){
+
+    console.log(props.aa)
     
     return(
         <>
