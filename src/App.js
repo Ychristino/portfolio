@@ -6,6 +6,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Menu from './modules/Menu';
 import Projetos from './modules/Projetos/Projetos';
 import Curriculum from './modules/Curriculum/Curriculum';
+import Manutencao from './modules/Logado/Manutencao';
 
 // BOOTSTRAP IMPORTS
 import Row from 'react-bootstrap/Row';
@@ -18,8 +19,9 @@ function App() {
   return (
     <>
       {/* Barra de navegação */}
+      <Row md={12}>
         <Menu />
-
+      </Row>
         {/* Inicio Bloco Central */}
         <Row
           className='mb-2'
@@ -28,7 +30,7 @@ function App() {
         >
           {/* Inicio Sidebar Esquerda */}
           <Col lg={2} md={12}>
-            
+            <Manutencao />
           </Col>
           {/* Final Sidebar Esquerda */}
 
