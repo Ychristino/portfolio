@@ -19,23 +19,19 @@ function App() {
   return (
     <>
       {/* Barra de navegação */}
-      <Row md={12}>
+      <Row>
         <Menu />
       </Row>
         {/* Inicio Bloco Central */}
+        <Manutencao />
+
         <Row
           className='mb-2'
           lg={3} 
           md={1}
         >
-          {/* Inicio Sidebar Esquerda */}
-          <Col lg={2} md={12}>
-            <Manutencao />
-          </Col>
-          {/* Final Sidebar Esquerda */}
-
             {/* Inicio Conteúdo da página */}
-            <Col lg={8} md={12}>
+            <Col lg={{span:8, offset: 2}} md={12}>
             
               <BrowserRouter>
                 <Routes>
@@ -67,13 +63,6 @@ function App() {
             </Col>
             {/* Final Conteúdo da página */}
 
-            
-            {/* Inicio Sidebar Direita */}
-            <Col lg={2} md={12}>
-              
-            </Col>
-            {/* Final Sidebar Direita */}
-          
           </Row>
           {/* Final Bloco Central */}
 
