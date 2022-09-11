@@ -23,7 +23,7 @@ function App() {
         <Menu />
       </Row>
         {/* Inicio Bloco Central */}
-        <Manutencao />
+        {/* <Manutencao /> */}
 
         <Row
           className='mb-2'
